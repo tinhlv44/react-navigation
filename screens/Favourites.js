@@ -33,10 +33,13 @@ const Favorites = ({ navigation }) => {
   }, []);
 
   const renderFavoriteThumbnail = ({ item }) => {
-    const { avatar } = item;
+    const { avatar, name } = item;
     return (
       <ContactThumbnail
         avatar={avatar}
+        name={name}
+        textColor={'black'}
+        style={{fontSize: 12}}
         onPress={() => navigation.navigate('Profile', { contact: item })}
       />
     );
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     flex: 1,
-    marginTop:40
+    //marginTop:40
   },
   list: {
     alignItems: 'center',

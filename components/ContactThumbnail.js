@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Text, Image, } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
 
-const ContactThumbnail = ({name, phone, avatar, textColor, onPress, }) =>
+const ContactThumbnail = ({name = '', phone = '', avatar = '', textColor = 'white', onPress = null, style='' }) =>
 {
     const colorStyle = {
         color: textColor,
@@ -21,11 +21,11 @@ const ContactThumbnail = ({name, phone, avatar, textColor, onPress, }) =>
                     style = {styles.avatar}
                 />
             </ImageComponent>
-            {name !== '' && <Text style = {[styles.name, colorStyle]}>{name}</Text>}
+            {name !== '' && <Text style = {[styles.name, colorStyle, style]}>{name}</Text>}
 
             {phone !== '' && (
                 <View style = {styles.phoneSection}>
-                    <Icon name="phone" size={16} style = {{color: textColor}} />
+                    <Icon name="phone" size={16} style = {{color: textColor, marginRight:8}} />
                     <Text style = {[styles.phone, colorStyle]}>{phone}</Text>
                 </View>
             )}
@@ -42,12 +42,12 @@ ContactThumbnail.propTypes = {
     onPress: PropTypes.func,
 };
 
-ContactThumbnail.defaultProps = {
-    name: '',
-    phone: '',
-    textColor: 'white',
-    onPress: null,
-}
+// ContactThumbnail.defaultProps = {
+//     name: '',
+//     phone: '',
+//     textColor: 'white',
+//     onPress: null,
+// }
 
 const styles = StyleSheet.create({
     container: {
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         alignItems: 'center',
         justifyContent: 'center',
+        
     },
     avatar: {
         width: 90,
