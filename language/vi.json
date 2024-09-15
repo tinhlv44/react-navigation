@@ -12,9 +12,13 @@
     "favorite-screen":"Yêu thích",
     "user-screen":"Người dùng",
     "name":"Tên",
-    "phone":"Số điện thoại",
+    "phone":"Sdt công việc",
     "update":"Cập nhật",
     "success":"Thành công",
-    "update-success":"Cập nhật thông tin thành công"
+    "update-success":"Cập nhật thông tin thành công",
+    "search-by-name":"Tìm kiếm theo tên",
+    "no-favorites":"Không có yêu thích nào",
+    "cell":"Sdt cá nhân "
+
   }
   

@@ -15,6 +15,9 @@
     "phone":"Phone",
     "update":"Update",
     "success":"Success",
-    "update-success":"User information updated successfully"
+    "update-success":"User information updated successfully",
+    "search-by-name":"Search by name",
+    "no-favorites":"No favorites here",
+    "cell":"Cell"
   }
   

@@ -6,8 +6,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../utility/colors';
 
 const DetailListItem = ({ icon, title, subtitle, onPress }) => {
+  const ItemComponent = onPress ? TouchableOpacity : View;
   return (
-    <TouchableOpacity style={styles.borderContainer} onPress={onPress}>
+    <ItemComponent style={styles.borderContainer} onPress={onPress}>
       <View style={styles.wrapper}>
         {icon && (
           <Icon
@@ -24,7 +25,7 @@ const DetailListItem = ({ icon, title, subtitle, onPress }) => {
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
         </View>
       </View>
-    </TouchableOpacity>
+    </ItemComponent>
   );
 };
 

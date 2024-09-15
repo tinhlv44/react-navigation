@@ -8,10 +8,12 @@ const UpdateUser = ({ route, navigation }) => {
 
   const [name, setName] = useState(user.name);
   const [phone, setPhone] = useState(user.phone);
+  const [email, setEmail] = useState(user.email);
+  const [cell, setCell] = useState(user.cell);
   const { t } = useTranslation();
 
   const handleUpdate = () => {
-    const updatedUser = { ...user, name, phone };
+    const updatedUser = { ...user, name, phone , email, cell};
     if (setUser) {
       setUser(updatedUser);
     }
@@ -32,6 +34,18 @@ const UpdateUser = ({ route, navigation }) => {
         style={styles.input}
         value={phone}
         onChangeText={setPhone}
+      />
+      <Text style={styles.label}>{t('cell')}:</Text>
+      <TextInput
+        style={styles.input}
+        value={cell}
+        onChangeText={setCell}
+      />
+      <Text style={styles.label}>Email:</Text>
+      <TextInput
+        style={styles.input}
+        value={email}
+        onChangeText={setEmail}
       />
       <Button title={t('update')} onPress={handleUpdate} />
     </View>

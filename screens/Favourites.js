@@ -5,10 +5,12 @@ import {
   View,
   FlatList,
   ActivityIndicator,
+  TextInput,
 } from 'react-native';
 import { fetchContacts } from '../utility/api';
 import ContactThumbnail from '../components/ContactThumbnail';
-
+import i18n from '../i18n';
+import { useTranslation } from 'react-i18next';
 const keyExtractor = ({ phone }) => phone;
 
 const Favorites = ({ navigation }) => {
@@ -16,7 +18,9 @@ const Favorites = ({ navigation }) => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const { t } = useTranslation();
   // Load data
   useEffect(() => {
     setLoading(true);
@@ -31,6 +35,10 @@ const Favorites = ({ navigation }) => {
         setError(true);
       });
   }, []);
+
+  const filteredContacts = contacts
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .filter(contact => contact.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const renderFavoriteThumbnail = ({ item }) => {
     const { avatar, name } = item;
@@ -52,13 +60,27 @@ const Favorites = ({ navigation }) => {
       {loading && <ActivityIndicator size="large" />}
       {error && <Text>Error...</Text>}
       {!loading && !error && (
-        <FlatList
-          data={favorites}
-          keyExtractor={keyExtractor}
-          numColumns={3}
-          contentContainerStyle={styles.list}
-          renderItem={renderFavoriteThumbnail}
-        />
+        favorites.length > 0 ? (
+          <>
+            <TextInput
+              style={styles.searchInput}
+              placeholder={t('search-by-name')}
+              value={searchQuery}
+              onChangeText={setSearchQuery} 
+            />
+            <FlatList
+              data={favorites}
+              keyExtractor={keyExtractor}
+              numColumns={3}
+              contentContainerStyle={styles.list}
+              renderItem={renderFavoriteThumbnail}
+            />       
+          </>
+        ) : (
+          <View style={{alignItems:'center'}}>
+            <Text style={{fontSize:20}}>{t('no-favorites')}</Text>
+          </View>
+        )
       )}
     </View>
   );
@@ -73,6 +95,14 @@ const styles = StyleSheet.create({
   },
   list: {
     alignItems: 'center',
+  },
+  searchInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    margin: 10,
+    borderRadius: 5,
   },
 });
 

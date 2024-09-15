@@ -26,15 +26,17 @@ const User = ({ navigation }) => {
       });
   }, []);
 
-  const { avatar, name, phone } = user;
+  const { avatar, name, phone, email, cell } = user;
   return (
     <View style={styles.container}>
       {loading && <ActivityIndicator size="large" />}
       {error && <Text>Error...</Text>}
       {!loading && !error && (
         <>
-          <ContactThumbnail avatar={avatar} name={name} phone={phone} />
+          <ContactThumbnail avatar={avatar} name={name} phone={phone} email={email} cell={cell}/>
           <Button
+            color={colors.greyDark}
+
             title={t('update_profile')}
             onPress={() => navigation.navigate('UpdateUser', { user, setUser })}
           />

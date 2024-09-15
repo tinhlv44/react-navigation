@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image, } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
+import colors from '../utility/colors';
 
-const ContactThumbnail = ({name = '', phone = '', avatar = '', textColor = 'white', onPress = null, style='' }) =>
+const ContactThumbnail = ({name = '', phone = '', avatar = '', email='', cell='', textColor = 'white', onPress = null, style='' }) =>
 {
     const colorStyle = {
         color: textColor,
@@ -28,6 +29,28 @@ const ContactThumbnail = ({name = '', phone = '', avatar = '', textColor = 'whit
                     <Icon name="phone" size={16} style = {{color: textColor, marginRight:8}} />
                     <Text style = {[styles.phone, colorStyle]}>{phone}</Text>
                 </View>
+            )}
+            {cell !== '' && (
+            <View style = {styles.phoneSection}>
+                <Icon
+                    name='person'
+                    size={20}
+                    style={{
+                    color: 'white',
+                }}/>
+                <Text style = {{fontSize:14, color:'white', marginLeft: 8}}>{cell}</Text>
+            </View>
+            )}
+            {email !== '' && (
+            <View style = {styles.phoneSection}>
+                <Icon
+                    name='email'
+                    size={24}
+                    style={{
+                    color: 'white',
+                }}/>
+                <Text style = {{fontSize:16, color:'white', marginLeft: 8}}>{email}</Text>
+            </View>
             )}
         </View>
     );
@@ -71,6 +94,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     phoneSection:{
-        flexDirection:'row'
+        flexDirection:'row',
+        marginBottom:4
     }
 });
